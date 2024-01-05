@@ -14,16 +14,15 @@ public class SortingFiles extends SimpleFileVisitor<Path> {
     @Override
     public java.nio.file.FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
 
-        if((file.getFileName().toString().toLowerCase().startsWith(START_FILE_NAME_CHECK)) && file.getFileName().toString().endsWith(".txt") ||
-                file.getFileName().toString().toLowerCase().startsWith(START_FILE_NAME_ORDER) && file.getFileName().toString().endsWith(".txt")  ||
-                file.getFileName().toString().toLowerCase().startsWith(START_FILE_NAME_INVOICE) && file.getFileName().toString().endsWith(".txt") && file.getFileName().toString().contains("2023")){
-        } else {
-            try {
-                Files.move(file, Paths.get(MOVE_PATH_INVALID_FILE + file.getFileName()));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
+        if (((!file.getFileName().toString().toLowerCase().startsWith(START_FILE_NAME_CHECK)) || !file.getFileName().toString().endsWith(".txt")) &&
+                (!file.getFileName().toString().toLowerCase().startsWith(START_FILE_NAME_ORDER) || !file.getFileName().toString().endsWith(".txt")) &&
+                (!file.getFileName().toString().toLowerCase().startsWith(START_FILE_NAME_INVOICE) || !file.getFileName().toString().endsWith(".txt") || !file.getFileName().toString().contains("2023"))) {
+                    try {
+                        Files.move(file, Paths.get(MOVE_PATH_INVALID_FILE + file.getFileName()));
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
         return java.nio.file.FileVisitResult.CONTINUE;
 
     }
