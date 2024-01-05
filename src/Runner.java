@@ -56,7 +56,7 @@ public class Runner {
      * 		+ исключения
      */
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
         ValidationCheck.doValidationCheckLogin();
 
