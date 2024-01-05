@@ -4,9 +4,7 @@ import file_parsing.sorting_files.SortingFiles;
 
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.SimpleFileVisitor;
 import java.util.Scanner;
 
 public class PathCheck {
