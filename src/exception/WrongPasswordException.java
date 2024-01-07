@@ -2,7 +2,7 @@ package exception;
 
 public class WrongPasswordException extends Exception {
 
-    public WrongPasswordException(int validationExceptionCode, String password) {
+    public WrongPasswordException( String password) {
         super(password);
     }
 

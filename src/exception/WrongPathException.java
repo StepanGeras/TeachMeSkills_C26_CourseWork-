@@ -2,7 +2,7 @@ package exception;
 
 public class WrongPathException extends Exception {
 
-    public WrongPathException(int exceptionCode, String error) {
+    public WrongPathException(String error) {
         super(error);
     }
 

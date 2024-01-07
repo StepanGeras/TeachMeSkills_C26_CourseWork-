@@ -29,7 +29,7 @@ public class ValidationCheck {
             if (!matcher.find() || !login.equals(Encryption.deCoding(INFORMATION.getLogin()))) {
                 for (int i = 2; i >= 0; i--) {
                     if (i == 0) {
-                        throw new WrongLoginException(14, "Wrong login");
+                        throw new WrongLoginException("Wrong login");
                     }
                     Logger.executionLogger(new Date(), "Wrong login \n" + "Attempts left " + i);
                     System.out.println("Wrong login \n" + "Attempts left " + i);
@@ -55,7 +55,7 @@ public class ValidationCheck {
             if (!matcher.find() || !password.equals(Encryption.deCoding(INFORMATION.getLogin()))) {
                 for (int i = 2; i >= 0; i--) {
                     if (i == 0) {
-                        throw new WrongPasswordException(15, "Wrong password");
+                        throw new WrongPasswordException("Wrong password");
                     }
                     Logger.executionLogger(new Date(), "Wrong password \n" + "Attempts left " + i);
                     System.out.println("Wrong password \n" + "Attempts left " + i);

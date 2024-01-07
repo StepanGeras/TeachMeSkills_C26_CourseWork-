@@ -26,7 +26,7 @@ public class PathCheck {
                 Files.walkFileTree(Paths.get(pathFile), new SortingFiles());
                 Logger.executionLogger(new Date(), "File processing was successful");
             } else {
-                throw new WrongPathException(20, "Wrong path");
+                throw new WrongPathException("Wrong path");
             }
         } catch (WrongPathException e) {
             Logger.errorLogger(new Date(), "Error path directory", e);
