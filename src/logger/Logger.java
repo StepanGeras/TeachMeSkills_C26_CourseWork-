@@ -10,8 +10,8 @@ import java.util.Date;
 
 public class Logger {
 
-    public static String PATH_EXECUTION_LOG = "/Users/stepan_gerasimovich/Desktop/Курсач/TeachMeSkills_C26_CourseWork/logger/Execution Log.txt";
-    public static String PATH_ERROR_LOG = "/Users/stepan_gerasimovich/Desktop/Курсач/TeachMeSkills_C26_CourseWork/logger/Error_Log.txt";
+    public static String PATH_EXECUTION_LOG = "/Users/stepan_gerasimovich/Desktop/Курсач/TeachMeSkills_C26_CourseWork/logger/Execution_Log";
+    public static String PATH_ERROR_LOG = "/Users/stepan_gerasimovich/Desktop/Курсач/TeachMeSkills_C26_CourseWork/logger/Error_Log";
 
     public static void executionLogger (Date date, String message) {
         try {
