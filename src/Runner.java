@@ -1,6 +1,7 @@
+import logger.Logger;
 import util_information.validation.ValidationCheck;
 
-import java.io.IOException;
+import java.util.Date;
 
 public class Runner {
 
@@ -58,7 +59,11 @@ public class Runner {
 
     public static void main(String[] args) {
 
+        Logger.executionLogger(new Date(), "Start program");
+
         ValidationCheck.doValidationCheckLogin();
+
+        Logger.executionLogger(new Date(), "End program");
 
     }
 
