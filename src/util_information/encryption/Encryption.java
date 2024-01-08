@@ -3,7 +3,6 @@ package util_information.encryption;
 import java.util.Base64;
 import java.util.Random;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Encryption {
 
