@@ -4,8 +4,9 @@ import exception.WrongLoginException;
 import exception.WrongPasswordException;
 import logger.Logger;
 import session_description.information.Information;
+import session_description.session_time.Session;
 import util_information.encryption.Encryption;
-import util_information.path_check.PathCheck;
+
 import java.util.Date;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -17,7 +18,7 @@ public class ValidationCheck {
     static Pattern PATTERN = Pattern.compile("^([0-9a-zA-Z_]{6,14})$");
     static Information INFORMATION = new Information();
 
-    public static void doValidationCheckLogin() {
+    public static Session doValidationCheck() {
 
         Logger.executionLogger(new Date(), "Check login");
 
@@ -40,14 +41,10 @@ public class ValidationCheck {
 
             }
             Logger.executionLogger(new Date(), "Login verification was successful");
-            doValidationCheckPassword();
+
         } catch (WrongLoginException e) {
             Logger.errorLogger(new Date(), "Wrong login", e);
         }
-
-    }
-
-    public static void doValidationCheckPassword () {
 
         Logger.executionLogger(new Date(), "Check password");
 
@@ -74,7 +71,7 @@ public class ValidationCheck {
             Logger.errorLogger(new Date(), "Wrong Password", e);
         }
 
-        PathCheck.pathFileCheck();
+        return new Session();
 
     }
 

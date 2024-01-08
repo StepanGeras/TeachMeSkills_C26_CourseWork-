@@ -1,4 +1,6 @@
 import logger.Logger;
+import session_description.session_time.Session;
+import util_information.path_check.PathCheck;
 import util_information.validation.ValidationCheck;
 
 import java.util.Date;
@@ -61,7 +63,9 @@ public class Runner {
 
         Logger.executionLogger(new Date(), "Start program");
 
-        ValidationCheck.doValidationCheckLogin();
+        Session session = ValidationCheck.doValidationCheck();
+
+        PathCheck.pathFileCheck(session);
 
         Logger.executionLogger(new Date(), "End program");
 
