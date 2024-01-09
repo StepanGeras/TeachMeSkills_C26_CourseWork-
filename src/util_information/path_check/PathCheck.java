@@ -2,12 +2,13 @@ package util_information.path_check;
 
 import exception.WrongPathException;
 import exception.WrongSessionException;
-import file_parsing.sorting_files.SortingFiles;
+import file_description.CreatingDirectoryFile;
+import file_parsing.statistics.Statistics;
 import logger.Logger;
 import session_description.session_time.Session;
-
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
 import java.util.Scanner;
@@ -25,19 +26,18 @@ public class PathCheck {
                         Scanner scanner = new Scanner(System.in);
                         System.out.println("Enter the path to the directory");
                         String pathFile = scanner.nextLine();
+                        Path path = Paths.get(pathFile);
 
                         try {
-                            if (Files.exists(Paths.get(pathFile))) {
+                            if (Files.exists(path)) {
                                 Logger.executionLogger(new Date(), "Verification was successful");
-                                Files.walkFileTree(Paths.get(pathFile), new SortingFiles());
+                                CreatingDirectoryFile.doCreatingDirectory(path);
                                 Logger.executionLogger(new Date(), "File processing was successful");
                             } else {
                                 throw new WrongPathException("Wrong path");
                             }
                         } catch (WrongPathException e) {
                             Logger.errorLogger(new Date(), "Error path directory", e);
-                        } catch (IOException e) {
-                            Logger.errorLogger(new Date(), "Error sorting file", e);
                         }
                     } else {
                         Logger.executionLogger(new Date(), "Session time has ended");

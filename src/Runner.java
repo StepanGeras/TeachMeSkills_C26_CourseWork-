@@ -1,3 +1,5 @@
+
+
 import logger.Logger;
 import session_description.session_time.Session;
 import util_information.path_check.PathCheck;
@@ -27,6 +29,7 @@ public class Runner {
      * 	- суммарный оборот по всем инвойсам
      * 	- суммарный оборот по всем ордерам
      * 	- суммарынй оборот по всем чекам
+     *
      *
      * Криетрии приемки
      * 	- Работающая программа.

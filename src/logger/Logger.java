@@ -8,10 +8,10 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Logger {
+import static util_information.constant.Constant.PATH_ERROR_LOG;
+import static util_information.constant.Constant.PATH_EXECUTION_LOG;
 
-    public static String PATH_EXECUTION_LOG = "/Users/stepan_gerasimovich/Desktop/Курсач/TeachMeSkills_C26_CourseWork/logger/Execution_Log";
-    public static String PATH_ERROR_LOG = "/Users/stepan_gerasimovich/Desktop/Курсач/TeachMeSkills_C26_CourseWork/logger/Error_Log";
+public class Logger {
 
     public static void executionLogger (Date date, String message) {
         try {

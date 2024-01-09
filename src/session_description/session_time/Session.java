@@ -1,7 +1,6 @@
 package session_description.session_time;
 
 import logger.Logger;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
@@ -50,7 +49,7 @@ public final class Session {
         Calendar calendar = Calendar.getInstance();
 
         calendar.setTime(new Date());
-        calendar.add(Calendar.SECOND, 20);
+        calendar.add(Calendar.SECOND, 30);
 
         this.expDate = calendar.getTime();
 
