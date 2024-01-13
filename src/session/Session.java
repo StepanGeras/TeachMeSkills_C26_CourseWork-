@@ -1,4 +1,4 @@
-package session_description.session_time;
+package session;
 
 import logger.Logger;
 import java.util.Calendar;

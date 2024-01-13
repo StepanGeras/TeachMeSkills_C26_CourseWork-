@@ -1,6 +1,6 @@
 package file_description;
 
-import file_parsing.statistics.Statistics;
+import file_parsing.CreateStatistics;
 import logger.Logger;
 
 import java.io.IOException;
@@ -90,7 +90,7 @@ public class CreatingDirectoryFile {
 
         Logger.executionLogger(new Date(), "Collection of statistics");
         try {
-            Files.walkFileTree(path, new Statistics());
+            Files.walkFileTree(path, new CreateStatistics());
         } catch (IOException e) {
             Logger.errorLogger(new Date(), "Error sorting file", e);
         }

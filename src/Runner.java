@@ -1,7 +1,7 @@
 
 
 import logger.Logger;
-import session_description.session_time.Session;
+import session.Session;
 import util_information.path_check.PathCheck;
 import util_information.validation.ValidationCheck;
 

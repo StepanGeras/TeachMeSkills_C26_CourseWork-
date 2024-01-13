@@ -1,4 +1,4 @@
-package file_parsing.statistics;
+package file_parsing;
 
 import logger.Logger;
 import util_information.search_value.SearchValueFile;
@@ -10,17 +10,18 @@ import java.util.Date;
 
 import static util_information.constant.Constant.*;
 
-public class Statistics extends SimpleFileVisitor<Path> {
+public class CreateStatistics extends SimpleFileVisitor<Path> {
 
     double SUM_INVOICE = 0;
     double SUM_CHECK = 0;
     double SUM_ORDER = 0;
-    double EURO_DOLLAR = 1.09;
 
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
 
         try {
+
+            double allSum = SUM_CHECK + SUM_ORDER + SUM_INVOICE;
 
             Logger.executionLogger(new Date(), "File check: " + file.getFileName());
 
@@ -28,7 +29,10 @@ public class Statistics extends SimpleFileVisitor<Path> {
 
                 Logger.executionLogger(new Date(), "File: " + file.getFileName() + " - valid");
 
-                SUM_CHECK += SearchValueFile.doSearchValueFile(file.toFile()) * EURO_DOLLAR;
+                SUM_CHECK += SearchValueFile.doSearchValueFile(file.toFile());
+
+                Logger.executionLogger(new Date(), "Recording the total turnover of checks in a file");
+                Files.write(Paths.get(PATH_RESULT_FILE_CHECK), ("Total turnover for all checks: " + SUM_CHECK).getBytes());
 
             } else if ((file.getFileName().toString().toLowerCase().startsWith(START_FILE_NAME_ORDER) && file.getFileName().toString().endsWith(".txt"))) {
 
@@ -36,12 +40,18 @@ public class Statistics extends SimpleFileVisitor<Path> {
 
                 SUM_ORDER += SearchValueFile.doSearchValueFile(file.toFile());
 
+                Logger.executionLogger(new Date(),  "Recording the total turnover of order in a file");
+                Files.write(Paths.get(PATH_RESULT_FILE_ORDER), ("Total turnover for all orders: " + SUM_ORDER).getBytes());
+
             } else if ((file.getFileName().toString().toLowerCase().startsWith(START_FILE_NAME_INVOICE) && file.getFileName().toString().endsWith(".txt") &&
                     file.getFileName().toString().contains(CONTENT_YEAR_FILE_NAME_INVOICE))) {
 
                 Logger.executionLogger(new Date(), "File: " + file.getFileName() + " - valid");
 
                 SUM_INVOICE += SearchValueFile.doSearchValueFile(file.toFile());
+
+                Logger.executionLogger(new Date(), "Recording the total turnover of invoice in a file");
+                Files.write(Paths.get(PATH_RESULT_FILE_INVOICE), ("Total turnover for all invoices: " + SUM_INVOICE).getBytes());
 
             } else {
                 try {
@@ -54,15 +64,7 @@ public class Statistics extends SimpleFileVisitor<Path> {
                 }
             }
 
-            double allSum = SUM_CHECK + SUM_ORDER + SUM_INVOICE;
-
-            Logger.executionLogger(new Date(), "Recording the total turnover of checks in a file");
-            Files.write(Paths.get(PATH_RESULT_FILE_CHECK), ("Total turnover for all checks: " + SUM_CHECK).getBytes());
-            Logger.executionLogger(new Date(),  "Registration was successful \n" + "Recording the total turnover of order in a file");
-            Files.write(Paths.get(PATH_RESULT_FILE_ORDER), ("Total turnover for all orders: " + SUM_ORDER).getBytes());
-            Logger.executionLogger(new Date(), "Registration was successful \n" + "Recording the total turnover of invoice in a file");
-            Files.write(Paths.get(PATH_RESULT_FILE_INVOICE), ("Total turnover for all invoices: " + SUM_INVOICE).getBytes());
-            Logger.executionLogger(new Date(), "Registration was successful \n" + "Recording total turnover in a file");
+            Logger.executionLogger(new Date(), "Recording total turnover in a file");
             Files.write(Paths.get(PATH_ALL_RESULT_FILE), ("Total turnover  " + allSum).getBytes());
             Logger.executionLogger(new Date(), "Registration was successful");
 

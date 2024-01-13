@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
+import static util_information.constant.Constant.*;
 
 public class SearchValueFile {
 
@@ -21,10 +22,11 @@ public class SearchValueFile {
         try {
             stream = Files.lines(file.toPath());
         } catch (IOException e) {
+            Logger.errorLogger(new Date(), "Error IOException", e);
             throw new RuntimeException(e);
         }
 
-        Logger.executionLogger(new Date(), "Filtration");
+        Logger.executionLogger(new Date(), "Filtration file");
 
         List<String> result  = stream
                 .filter(line -> line.toLowerCase().contains("total"))
@@ -33,22 +35,46 @@ public class SearchValueFile {
         String string = result.toString();
 
         Logger.executionLogger(new Date(), "Replacing commas with dots and displaying values");
+        Matcher matcher = pattern.matcher(string);
 
         if (string.contains(",")) {
+            Logger.executionLogger(new Date(), "Replacing a comma with a dot");
             String newString = string.replace(",", ".");
-            Matcher matcher = pattern.matcher(newString);
+            Matcher newMatcher = pattern.matcher(newString);
 
-            if (matcher.find()) {
-                return Double.parseDouble(matcher.group());
+            Logger.executionLogger(new Date(), "Search for value");
+
+            if (newMatcher.find()) {
+                if (newString.contains("EURO")) {
+                    Logger.executionLogger(new Date(), "Currency of this file is EURO");
+                    return Math.round((Double.parseDouble(newMatcher.group()) * EURO_DOLLAR) * 100.0) / 100.0;
+                } else if (newString.contains("GBR")) {
+                    Logger.executionLogger(new Date(), "Currency of this file is GBR");
+                    return Math.round((Double.parseDouble(newMatcher.group()) * GBR_DOLLAR) * 100.0) / 100.0;
+                } else {
+                    Logger.executionLogger(new Date(), "Currency of this file is Dollar");
+                    return Math.round((Double.parseDouble(newMatcher.group())) * 100.0) / 100.0;
+                }
             }
 
         } else {
-            Matcher matcher = pattern.matcher(string);
 
             if (matcher.find()) {
-                return Double.parseDouble(matcher.group());
+                if (string.contains("EURO")) {
+                    Logger.executionLogger(new Date(), "Currency of this file is EURO");
+                    return Math.round((Double.parseDouble(matcher.group()) * EURO_DOLLAR) * 100.0) / 100.0;
+                } else if (string.contains("GBR")) {
+                    Logger.executionLogger(new Date(), "Currency of this file is GBR");
+                    return Math.round((Double.parseDouble(matcher.group()) * GBR_DOLLAR) * 100.0) / 100.0;
+                } else {
+                    Logger.executionLogger(new Date(), "Currency of this file is Dollar");
+                    return Math.round((Double.parseDouble(matcher.group())) * 100.0) / 100.0;
+                }
             }
+
         }
+
+        stream.close();
 
         return 0;
 

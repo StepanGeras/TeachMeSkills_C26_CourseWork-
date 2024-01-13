@@ -4,7 +4,9 @@ import exception.WrongPathException;
 import exception.WrongSessionException;
 import file_description.CreatingDirectoryFile;
 import logger.Logger;
-import session_description.session_time.Session;
+import session.Session;
+
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -25,14 +27,19 @@ public class PathCheck {
                         System.out.println("Enter the path to the directory");
                         String pathFile = scanner.nextLine();
                         Path path = Paths.get(pathFile);
+                        File file = new File(path.toUri());
 
                         try {
-                            if (Files.exists(path)) {
+                            if (file.exists() && file.isDirectory()) {
                                 Logger.executionLogger(new Date(), "Verification was successful");
                                 CreatingDirectoryFile.doCreatingDirectory(path);
                                 Logger.executionLogger(new Date(), "File processing was successful");
-                            } else {
-                                throw new WrongPathException("Wrong path");
+                            } else if (file.exists() && !file.isDirectory()) {
+                                Logger.executionLogger(new Date(), "Directory is empty");
+                                throw new WrongPathException("Directory is empty");
+                            } else if (!file.exists()) {
+                                Logger.executionLogger(new Date(), "Path does not exist");
+                                throw new WrongPathException("Path does not exist");
                             }
                         } catch (WrongPathException e) {
                             Logger.errorLogger(new Date(), "Error path directory", e);

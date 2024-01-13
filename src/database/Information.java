@@ -1,4 +1,4 @@
-package session_description.information;
+package database;
 
 public final class Information {
 

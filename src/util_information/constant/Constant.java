@@ -1,5 +1,7 @@
 package util_information.constant;
 
+import java.text.DecimalFormat;
+
 public class Constant {
 
     public static String START_FILE_NAME_CHECK = "2023_electric_bill";
@@ -14,6 +16,7 @@ public class Constant {
     public static String PATH_EXECUTION_LOG = "/Users/stepan_gerasimovich/Desktop/Курсач/TeachMeSkills_C26_CourseWork/logger/Execution_Log";
     public static String PATH_ERROR_LOG = "/Users/stepan_gerasimovich/Desktop/Курсач/TeachMeSkills_C26_CourseWork/logger/Error_Log";
     public static String PATH_RESULT_DIRECTORY = "/Users/stepan_gerasimovich/Desktop/Курсач/TeachMeSkills_C26_CourseWork/result";
-
+    public static double EURO_DOLLAR = 1.09;
+    public static double GBR_DOLLAR = 1.27;
 
 }

@@ -3,8 +3,8 @@ package util_information.validation;
 import exception.WrongLoginException;
 import exception.WrongPasswordException;
 import logger.Logger;
-import session_description.information.Information;
-import session_description.session_time.Session;
+import database.Information;
+import session.Session;
 import util_information.encryption.Encryption;
 
 import java.util.Date;
