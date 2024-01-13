@@ -16,6 +16,10 @@ public class CreateStatistics extends SimpleFileVisitor<Path> {
     double SUM_CHECK = 0;
     double SUM_ORDER = 0;
 
+/**
+ * service for reading and processing information
+ */
+
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
 
