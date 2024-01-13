@@ -1,7 +1,5 @@
 package util_information.constant;
 
-import java.text.DecimalFormat;
-
 public class Constant {
 
     public static String START_FILE_NAME_CHECK = "2023_electric_bill";
