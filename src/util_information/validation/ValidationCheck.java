@@ -18,6 +18,9 @@ public class ValidationCheck {
     static Pattern PATTERN = Pattern.compile("^([0-9a-zA-Z_]{6,14})$");
     static Information INFORMATION = new Information();
 
+/**
+ *  authorization service
+*/
     public static Session doValidationCheck() {
 
         Logger.executionLogger(new Date(), "Check login");
