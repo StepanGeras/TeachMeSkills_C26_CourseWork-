@@ -1,6 +1,5 @@
 package file_description;
 
-import file_parsing.CreateStatistics;
 import logger.Logger;
 
 import java.io.IOException;
@@ -13,7 +12,7 @@ import static util_information.constant.Constant.*;
 
 public class CreatingDirectoryFile {
 
-    public static void doCreatingDirectory (Path path) {
+    public static void doCreatingDirectory () {
 
         Logger.executionLogger(new Date(), "Checking for directory existence (file invalid)");
         if (!Files.isDirectory(Paths.get(PATH_INVALID_FILE_DIRECTORY))) {
@@ -37,11 +36,11 @@ public class CreatingDirectoryFile {
             }
         }
 
-        doCreatingFile(path);
+        doCreatingFile();
 
     }
 
-    public static void doCreatingFile (Path path) {
+    public static void doCreatingFile () {
 
         Logger.executionLogger(new Date(), "Check for file existence (all result)");
         if (!Files.isRegularFile(Paths.get(PATH_ALL_RESULT_FILE))) {

@@ -76,6 +76,7 @@ public class Runner {
 
         Logger.executionLogger(new Date(), "Collection of statistics");
         try {
+            //assert path != null;
             Files.walkFileTree(path, new CreateStatistics());
         } catch (IOException e) {
             Logger.errorLogger(new Date(), "Error sorting file", e);

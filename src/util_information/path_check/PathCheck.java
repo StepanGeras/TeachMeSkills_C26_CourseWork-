@@ -31,7 +31,7 @@ public class PathCheck {
                         try {
                             if (file.exists() && file.isDirectory()) {
                                 Logger.executionLogger(new Date(), "Verification was successful");
-                                CreatingDirectoryFile.doCreatingDirectory(path);
+                                CreatingDirectoryFile.doCreatingDirectory();
                                 Logger.executionLogger(new Date(), "File processing was successful");
 
                                 return path;
