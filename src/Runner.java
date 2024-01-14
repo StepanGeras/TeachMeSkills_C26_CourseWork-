@@ -1,10 +1,14 @@
 
 
+import file_parsing.CreateStatistics;
 import logger.Logger;
 import session.Session;
 import util_information.path_check.PathCheck;
 import util_information.validation.ValidationCheck;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Date;
 
 public class Runner {
@@ -68,7 +72,15 @@ public class Runner {
 
         Session session = ValidationCheck.doValidationCheck();
 
-        PathCheck.pathFileCheck(session);
+        Path path = PathCheck.pathFileCheck(session);
+
+        Logger.executionLogger(new Date(), "Collection of statistics");
+        try {
+            Files.walkFileTree(path, new CreateStatistics());
+        } catch (IOException e) {
+            Logger.errorLogger(new Date(), "Error sorting file", e);
+        }
+        Logger.executionLogger(new Date(), "Statistics collection was successful");
 
         Logger.executionLogger(new Date(), "End program");
 

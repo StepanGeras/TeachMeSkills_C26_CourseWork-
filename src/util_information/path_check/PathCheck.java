@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 public class PathCheck {
 
-    public static void pathFileCheck  (Session session) {
+    public static Path pathFileCheck  (Session session) {
 
         try {
             if (session != null) {
@@ -33,6 +33,9 @@ public class PathCheck {
                                 Logger.executionLogger(new Date(), "Verification was successful");
                                 CreatingDirectoryFile.doCreatingDirectory(path);
                                 Logger.executionLogger(new Date(), "File processing was successful");
+
+                                return path;
+
                             } else if (file.exists() && !file.isDirectory()) {
                                 Logger.executionLogger(new Date(), "Directory is empty");
                                 throw new WrongPathException("Directory is empty");
@@ -58,6 +61,7 @@ public class PathCheck {
             Logger.errorLogger(new Date(), "Error session", e);
         }
 
+        return null;
     }
 
 }

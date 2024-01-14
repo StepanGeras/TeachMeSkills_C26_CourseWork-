@@ -87,15 +87,6 @@ public class CreatingDirectoryFile {
             }
         }
 
-
-        Logger.executionLogger(new Date(), "Collection of statistics");
-        try {
-            Files.walkFileTree(path, new CreateStatistics());
-        } catch (IOException e) {
-            Logger.errorLogger(new Date(), "Error sorting file", e);
-        }
-        Logger.executionLogger(new Date(), "Statistics collection was successful");
-
     }
 
 }

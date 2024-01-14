@@ -2,10 +2,11 @@ package util_information.constant;
 
 public class Constant {
 
-    public static String START_FILE_NAME_CHECK = "2023_electric_bill";
+    public static String FILE_TYPE = ".txt";
+    public static String START_FILE_NAME_CHECK = "_electric_bill";
     public static String START_FILE_NAME_INVOICE = "invoice";
-    public static String CONTENT_YEAR_FILE_NAME_INVOICE = "2023";
-    public static String START_FILE_NAME_ORDER = "2023_order";
+    public static String YEAR_FILE_NAME = "2023";
+    public static String START_FILE_NAME_ORDER = "_order";
     public static String PATH_INVALID_FILE_DIRECTORY = "/Users/stepan_gerasimovich/Desktop/Курсач/TeachMeSkills_C26_CourseWork/file_invalid";
     public static String PATH_RESULT_FILE_ORDER = "/Users/stepan_gerasimovich/Desktop/Курсач/TeachMeSkills_C26_CourseWork/result/result_order.txt";
     public static String PATH_RESULT_FILE_CHECK = "/Users/stepan_gerasimovich/Desktop/Курсач/TeachMeSkills_C26_CourseWork/result/result_check.txt";
