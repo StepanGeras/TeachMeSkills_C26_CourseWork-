@@ -1,4 +1,4 @@
-package file_parsing;
+package create_statistics;
 
 import logger.Logger;
 import util_information.search_value.SearchValueFile;
@@ -25,7 +25,7 @@ public class CreateStatistics extends SimpleFileVisitor<Path> {
 
             Logger.executionLogger(new Date(), "File check: " + file.getFileName());
 
-            if (((file.getFileName().toString().toLowerCase().startsWith(START_FILE_NAME_CHECK)) && file.getFileName().toString().endsWith(".txt"))) {
+            if (((file.getFileName().toString().toLowerCase().startsWith(YEAR_FILE_NAME + START_FILE_NAME_CHECK)) && file.getFileName().toString().endsWith(TYPE_FILE))) {
 
                 Logger.executionLogger(new Date(), "File: " + file.getFileName() + " - valid");
 
@@ -34,7 +34,7 @@ public class CreateStatistics extends SimpleFileVisitor<Path> {
                 Logger.executionLogger(new Date(), "Recording the total turnover of checks in a file");
                 Files.write(Paths.get(PATH_RESULT_FILE_CHECK), ("Total turnover for all checks: " + SUM_CHECK).getBytes());
 
-            } else if ((file.getFileName().toString().toLowerCase().startsWith(START_FILE_NAME_ORDER) && file.getFileName().toString().endsWith(".txt"))) {
+            } else if ((file.getFileName().toString().toLowerCase().startsWith(YEAR_FILE_NAME + START_FILE_NAME_ORDER) && file.getFileName().toString().endsWith(TYPE_FILE))) {
 
                 Logger.executionLogger(new Date(), "File: " + file.getFileName() + " - valid");
 
@@ -43,8 +43,7 @@ public class CreateStatistics extends SimpleFileVisitor<Path> {
                 Logger.executionLogger(new Date(),  "Recording the total turnover of order in a file");
                 Files.write(Paths.get(PATH_RESULT_FILE_ORDER), ("Total turnover for all orders: " + SUM_ORDER).getBytes());
 
-            } else if ((file.getFileName().toString().toLowerCase().startsWith(START_FILE_NAME_INVOICE) && file.getFileName().toString().endsWith(".txt") &&
-                    file.getFileName().toString().contains(CONTENT_YEAR_FILE_NAME_INVOICE))) {
+            } else if ((file.getFileName().toString().toLowerCase().startsWith(START_FILE_NAME_INVOICE) && file.getFileName().toString().endsWith(YEAR_FILE_NAME + TYPE_FILE))) {
 
                 Logger.executionLogger(new Date(), "File: " + file.getFileName() + " - valid");
 

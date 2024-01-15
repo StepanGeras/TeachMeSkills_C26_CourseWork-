@@ -1,6 +1,6 @@
-package file_description;
+package creating_directory_file;
 
-import file_parsing.CreateStatistics;
+import create_statistics.CreateStatistics;
 import logger.Logger;
 
 import java.io.IOException;

@@ -66,9 +66,10 @@ public class Runner {
 
         Logger.executionLogger(new Date(), "Start program");
 
-        Session session = ValidationCheck.doValidationCheck();
-
-        PathCheck.pathFileCheck(session);
+        if (ValidationCheck.doValidationCheckLogin()) {
+            Session session = new Session();
+            PathCheck.pathFileCheck(session);
+        }
 
         Logger.executionLogger(new Date(), "End program");
 

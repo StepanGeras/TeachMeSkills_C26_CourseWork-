@@ -2,7 +2,7 @@ package util_information.path_check;
 
 import exception.WrongPathException;
 import exception.WrongSessionException;
-import file_description.CreatingDirectoryFile;
+import creating_directory_file.CreatingDirectoryFile;
 import logger.Logger;
 import session.Session;
 
