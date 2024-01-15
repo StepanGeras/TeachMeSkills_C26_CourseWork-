@@ -1,10 +1,15 @@
 
 
+import parsing_file.create_statistics.CreateStatistics;
 import logger.Logger;
+import parsing_file.write_file.WriteFile;
 import session.Session;
 import util_information.path_check.PathCheck;
 import util_information.validation.ValidationCheck;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Date;
 
 public class Runner {
@@ -32,10 +37,10 @@ public class Runner {
      *
      *
      * Криетрии приемки
-     * 	- Работающая программа.
-     * 	- Чистый и понятный код.
-     * 	- Соблюдение нейминг конвеншн для пакетов, классов, методов, переменных.
-     * 	- Java doc комментарии для сервисов обязательны. Комментарии на английском.
+     * 	+ Работающая программа.
+     * 	+- Чистый и понятный код.
+     * 	+- Соблюдение нейминг конвеншн для пакетов, классов, методов, переменных.
+     * 	+- Java doc комментарии для сервисов обязательны. Комментарии на английском.
      * 	- Заполненный, краткий и ясный ReadMe файл. Файл должен быть заполен на английском.
      * 	- Весь рабочий код должные находится в ветке master. Количествой другие веток не ограничено.
      * 	- Репозиторий не должен содержать ненужных файлов и папкок (например, idea, target и другие).
@@ -66,9 +71,22 @@ public class Runner {
 
         Logger.executionLogger(new Date(), "Start program");
 
-        if (ValidationCheck.doValidationCheckLogin()) {
+        if (ValidationCheck.doValidationCheck()){
+
             Session session = new Session();
-            PathCheck.pathFileCheck(session);
+            Path path = PathCheck.pathFileCheck(session);
+
+            if (path != null){
+                try {
+                    Logger.executionLogger(new Date(), "Collection of statistics");
+                    Files.walkFileTree(path, new CreateStatistics());
+                } catch (IOException e) {
+                    Logger.errorLogger(new Date(), "Error sorting file", e);
+                }
+            }
+
+            WriteFile.doWriteFile();
+
         }
 
         Logger.executionLogger(new Date(), "End program");

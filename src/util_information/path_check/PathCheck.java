@@ -6,57 +6,67 @@ import creating_directory_file.CreatingDirectoryFile;
 import logger.Logger;
 import session.Session;
 
-import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
 import java.util.Scanner;
 
+import static util_information.constant.Constant.PATH_FIN_FILE;
+
+//path check 
+
 public class PathCheck {
 
-    public static void pathFileCheck  (Session session) {
+    public static Path pathFileCheck  (Session session) {
 
-        try {
+       try {
             if (session != null) {
                 try {
                     if (session.sessionAlive()) {
+
                         Logger.executionLogger(new Date(), "Check path to the directory");
 
                         Scanner scanner = new Scanner(System.in);
                         System.out.println("Enter the path to the directory");
                         String pathFile = scanner.nextLine();
                         Path path = Paths.get(pathFile);
-                        File file = new File(path.toUri());
 
                         try {
-                            if (file.exists() && file.isDirectory()) {
+                            if (path.equals(Paths.get(PATH_FIN_FILE))) {
+
                                 Logger.executionLogger(new Date(), "Verification was successful");
-                                CreatingDirectoryFile.doCreatingDirectory(path);
+                                CreatingDirectoryFile.doCreating();
                                 Logger.executionLogger(new Date(), "File processing was successful");
-                            } else if (file.exists() && !file.isDirectory()) {
-                                Logger.executionLogger(new Date(), "Directory is empty");
-                                throw new WrongPathException("Directory is empty");
-                            } else if (!file.exists()) {
-                                Logger.executionLogger(new Date(), "Path does not exist");
-                                throw new WrongPathException("Path does not exist");
+
+                                return path;
+
+                            } else {
+                                throw new WrongPathException("Wrong path");
                             }
                         } catch (WrongPathException e) {
                             Logger.errorLogger(new Date(), "Error path directory", e);
+                            System.out.println("You entered an incorrect folder path");
+                            return null;
                         }
+
                     } else {
                         Logger.executionLogger(new Date(), "Session time has ended");
-                        throw new WrongSessionException("");
+                        throw new WrongSessionException("Session time has ended");
                     }
                 } catch (WrongSessionException e) {
                     Logger.errorLogger(new Date(), "Session time has expired", e);
+                    System.out.println("Session time has expired");
+                    return null;
                 }
             } else {
                 Logger.executionLogger(new Date(), "Session dead");
                 throw new WrongSessionException("Wrong session");
             }
-        } catch (WrongSessionException e) {
-            Logger.errorLogger(new Date(), "Error session", e);
-        }
+       } catch (WrongSessionException e) {
+           Logger.errorLogger(new Date(), "Error session", e);
+           System.out.println("Error session");
+           return null;
+       }
 
     }
 
