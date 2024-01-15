@@ -17,7 +17,7 @@ public class CreateStatistics extends SimpleFileVisitor<Path> {
     double SUM_ORDER = 0;
 
 /**
- * file recording and transfer service
+ * service for recording and moving a file
  */
 
     @Override
