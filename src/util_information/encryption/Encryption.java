@@ -4,6 +4,8 @@ import java.util.Base64;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+//coding and decoding information
+
 public class Encryption {
 
     public static String coding (String string){
