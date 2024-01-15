@@ -4,7 +4,6 @@ import exception.WrongLoginException;
 import exception.WrongPasswordException;
 import logger.Logger;
 import database.Information;
-import session.Session;
 import util_information.encryption.Encryption;
 
 import java.util.Date;
@@ -18,7 +17,10 @@ public class ValidationCheck {
     static Pattern PATTERN = Pattern.compile("^([0-9a-zA-Z_]{6,14})$");
     static Information INFORMATION = new Information();
 
-    public static boolean doValidationCheckLogin() {
+/**
+ *  authorization service
+*/
+    public static boolean doValidationCheck() {
 
         Logger.executionLogger(new Date(), "Check login");
 
@@ -44,14 +46,9 @@ public class ValidationCheck {
 
         } catch (WrongLoginException e) {
             Logger.errorLogger(new Date(), "Wrong login", e);
+            System.out.println("Login error. Sign Out");
+            return false;
         }
-
-        doValidationPassword();
-
-        return true;
-    }
-
-    public static void doValidationPassword () {
 
         Logger.executionLogger(new Date(), "Check password");
 
@@ -76,7 +73,11 @@ public class ValidationCheck {
             Logger.executionLogger(new Date(), "Password verification was successful");
         } catch (WrongPasswordException e) {
             Logger.errorLogger(new Date(), "Wrong Password", e);
+            System.out.println("Password error. Sign Out");
+            return false;
         }
+
+        return true;
 
     }
 

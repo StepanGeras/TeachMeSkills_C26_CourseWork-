@@ -12,6 +12,8 @@ import java.util.regex.Pattern;
 import java.util.stream.Stream;
 import static util_information.constant.Constant.*;
 
+//search value in file
+
 public class SearchValueFile {
 
     public static double doSearchValueFile (File file) {
